@@ -5,12 +5,25 @@ import { MainComponent } from './main/main.component';
 const routes: Routes = [
   {
     path:"", component:MainComponent,
-    loadChildren:()=>import('./../pages/home/home.module').then(m=>m.HomeModule),
+
+    children:[
+      { path:"",
+        loadChildren:()=>import('./../pages/home/home.module').then(m=>m.HomeModule)
+      },
+      {
+        path:"about",
+        loadChildren:()=>import('./../pages/about/about.module').then(m=>m.AboutModule),
+      },
+      {
+        path:"login",
+        loadChildren:()=>import('./../pages/login/login.module').then(m=>m.LoginModule),
+
+      },
+    ]
   },
-  {
-    path:"about", component:MainComponent,
-    loadChildren:()=>import('./../pages/about/about.module').then(m=>m.AboutModule),
-  },
+
+
+
 ];
 
 @NgModule({
